@@ -2,7 +2,7 @@
 
 #Set the name of the job. This will be the first part of the error/output filename.
 
-#$ -N BD_T1rho
+#$ -N BD_T1rho_CombineData
 
 #Set the shell that should be used to run the job.
 #$ -S /bin/bash
@@ -15,7 +15,7 @@
 #$ -q PINC
 
 #Select the number of slots the job will use
-#$ -pe smp 2
+#$ -pe smp 4 
 
 #Print informationn from the job into the output file
 #/bin/echo Here I am: `hostname`. Sleeping now at: `date`
@@ -30,23 +30,27 @@
 #$ -M joseph-shaffer@uiowa.edu
 
 #Run as Array Job
-#$ -t 19:30:1
+#$ -t 1:1:1
 
 #Do Stuff
 
-#module load matlab/2018a
+module load matlab/2018a
 
-#cd /Shared/MRRCdata/BD_TMS_TIMING/scripts/BIDS
+cd /Shared/MRRCdata/BD_TMS_TIMING/scripts/T1rhoPipeline/CombineSubjectData
 
-#bash runIterative_generateBIDSstructure.sh $(($SGE_TASK_ID+6))
-#bash runIterative_generateBIDSstructure.sh $(($SGE_TASK_ID+7))
+COVAR_FILE='BD_TMS_SessionList-03-Dec-2020.txt'
+DATA_DIR='/Shared/MRRCdata/BD_TMS_TIMING/derivatives/T1rho'
+OUTPREFIX='BD_TMS_T1rho_data'
 
-#matlab -nodesktop -nosplash -r "createScanTSV;quit;"
+matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX);quit;"
 
+COVAR_FILE='BDvHC_SessionList-03-Dec-2020.txt'
+DATA_DIR='/Shared/MRRCdata/BD_TMS_TIMING/derivatives/T1rho'
+OUTPREFIX='BDvHC_T1rho_data'
 
+matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX);quit;"
 
-cd /Shared/MRRCdata/BD_TMS_TIMING/scripts/T1rhoPipeline
-bash readBIDS_forT1rho.sh $SGE_TASK_ID
+#bash readBIDS_forFreesurfer.sh $SGE_TASK_ID
 
 
 
