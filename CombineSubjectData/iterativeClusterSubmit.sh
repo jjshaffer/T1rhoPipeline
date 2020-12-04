@@ -2,7 +2,7 @@
 
 #Set the name of the job. This will be the first part of the error/output filename.
 
-#$ -N BD_fALFF
+#$ -N BD_T1rho_CombineData
 
 #Set the shell that should be used to run the job.
 #$ -S /bin/bash
@@ -38,17 +38,21 @@ module load matlab/2018a
 
 cd /Shared/MRRCdata/BD_TMS_TIMING/scripts/T1rhoPipeline/CombineSubjectData
 
-COVAR_FILE='BD_TMS_SessionList-03-Dec-2020.txt'
-DATA_DIR='/Shared/MRRCdata/BD_TMS_TIMING/derivatives/T1rho'
-OUTPREFIX='BD_TMS_T1rho_data'
+COVAR_FILE="'BD_TMS_SessionList-03-Dec-2020.txt'"
+DATA_DIR="'/Shared/MRRCdata/BD_TMS_TIMING/derivatives/T1rho'"
+OUTPREFIX="'BD_TMS_T1rho_data'"
+CTRL_DIR="'/Shared/MRRCdata/SCZ_TMS_TIMING/derivatives/T1rho'"
+CTRL_INDEX=10000
 
-matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX);quit;"
+matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX, $CTRL_DIR, $CTRL_INDEX);quit;"
 
-COVAR_FILE='BDvHC_SessionList-03-Dec-2020.txt'
-DATA_DIR='/Shared/MRRCdata/BD_TMS_TIMING/derivatives/T1rho'
-OUTPREFIX='BDvHC_T1rho_data'
+COVAR_FILE="'BDvHC_SessionList-03-Dec-2020.txt'"
+DATA_DIR="'/Shared/MRRCdata/BD_TMS_TIMING/derivatives/T1rho'"
+OUTPREFIX="'BDvHC_T1rho_data'"
+CTRL_DIR="'/Shared/MRRCdata/SCZ_TMS_TIMING/derivatives/T1rho'"
+CTRL_INDEX=26
 
-matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX);quit;"
+matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX, $CTRL_DIR, $CTRL_INDEX);quit;"
 
 #bash readBIDS_forFreesurfer.sh $SGE_TASK_ID
 
