@@ -40,15 +40,15 @@ cd /Shared/MRRCdata/SCZ_TMS_TIMING/scripts/T1rhoPipeline/CombineSubjectData
 
 
 
-COVAR_FILE='SCZ_TMS_SessionList-03-Dec-2020.txt'
-DATA_DIR='/Shared/MRRCdata/SCZ_TMS_TIMING/derivatives/T1rho'
-OUTPREFIX='SCZ_TMS_T1rho_data'
+COVAR_FILE="'SCZ_TMS_SessionList-03-Dec-2020.txt'"
+DATA_DIR="'/Shared/MRRCdata/SCZ_TMS_TIMING/derivatives/T1rho'"
+OUTPREFIX="'SCZ_TMS_T1rho_data'"
 
 matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX);quit;"
 
-COVAR_FILE='SCZvHC_SessionList-03-Dec-2020.txt'
-DATA_DIR='/Shared/MRRCdata/SCZ_TMS_TIMING/derivatives/T1rho'
-OUTPREFIX='SCZvHC_T1rho_data'
+COVAR_FILE="'SCZvHC_SessionList-03-Dec-2020.txt'"
+DATA_DIR="'/Shared/MRRCdata/SCZ_TMS_TIMING/derivatives/T1rho'"
+OUTPREFIX="'SCZvHC_T1rho_data'"
 
 matlab -nodesktop -nosplash -r "createDataFile($COVAR_FILE, $DATA_DIR, $OUTPREFIX);quit;"
 
